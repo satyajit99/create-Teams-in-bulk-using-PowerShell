@@ -5,7 +5,7 @@ $connection = Connect-MicrosoftTeams
 try
 {
     #CSV File Path. Change this location accordingly
-    $filePath = "C:\Users\Satya\Desktop\CreateBulkTeams.csv"
+    $filePath = "C:\Users\$env:USERNAME\Desktop\CreateBulkTeams.csv"
 
     #read the input file
     $loadFile = Import-Csv -Path $filePath
@@ -20,10 +20,10 @@ try
 
         #create the team with specified parameters
         $groupID = New-Team -DisplayName $teamName -Owner $teamOwner -Description $teamDescription -Visibility $teamVisibility
-        Write-Host "Team " $teamName " created successfully..."
+        Write-Host "Team $($teamName) created successfully..."
     }
     
-    Write-Host $loadFile.Count " teams were created" -ForegroundColor Green -BackgroundColor Black
+    Write-Host "$($loadFile).Count teams were created" -ForegroundColor Green -BackgroundColor Black
   
 }
 
